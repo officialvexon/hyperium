@@ -1,9 +1,46 @@
 'use client';
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function PasswordGeneratorPage() {
+  const [password, setPassword] = useState("");
+  const [length, setLength] = useState(16);
+  const [includeUpper, setIncludeUpper] = useState(true);
+  const [includeNumbers, setIncludeNumbers] = useState(true);
+  const [includeSymbols, setIncludeSymbols] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  const generatePassword = () => {
+    let charset = "abcdefghijklmnopqrstuvwxyz";
+    if (includeUpper) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (includeNumbers) charset += "0123456789";
+    if (includeSymbols) charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+    let newPassword = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      newPassword += charset[randomIndex];
+    }
+    setPassword(newPassword);
+    setCopied(false);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      generatePassword();
+    }, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleCopy = () => {
+    if (password) {
+      navigator.clipboard.writeText(password);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black pt-20">
       <motion.div 
@@ -19,33 +56,65 @@ export default function PasswordGeneratorPage() {
             <input 
               readOnly
               type="text"
-              className="w-full bg-black border-2 border-indigo-500/30 rounded-2xl p-6 text-2xl font-mono text-white text-center group-hover:border-indigo-500/60 transition-all"
-              value="Kj9#fL2$vP9!mN1*"
+              className="w-full bg-black border-2 border-indigo-500/30 rounded-2xl p-6 pr-20 text-2xl font-mono text-white text-center group-hover:border-indigo-500/60 transition-all focus:outline-none"
+              value={password}
             />
-            <button className="absolute right-4 top-1/2 -translate-y-1/2 text-indigo-400 hover:text-indigo-300">
-              Copy
+            <button 
+              onClick={handleCopy}
+              className="absolute right-4 top-1/2 -translate-y-1/2 px-3 py-1 rounded bg-indigo-500/20 text-indigo-400 hover:text-indigo-300 hover:bg-indigo-500/30 transition-colors text-sm font-medium"
+            >
+              {copied ? "Copied!" : "Copy"}
             </button>
           </div>
           
-          <div className="space-y-4 text-left">
+          <div className="space-y-6 text-left pt-4">
             <div className="flex items-center justify-between">
-              <label className="text-white font-medium">Length</label>
-              <input type="range" className="w-40" min="8" max="64" />
+              <label className="text-white font-medium">Length: {length}</label>
+              <input 
+                type="range" 
+                className="w-48 accent-indigo-500" 
+                min="8" 
+                max="64" 
+                value={length}
+                onChange={(e) => setLength(Number(e.target.value))}
+              />
             </div>
             
-            {[
-              { label: "Include Uppercase", checked: true },
-              { label: "Include Numbers", checked: true },
-              { label: "Include Symbols", checked: true },
-            ].map((opt, i) => (
-              <div key={i} className="flex items-center justify-between">
-                <label className="text-neutral-400">{opt.label}</label>
-                <input type="checkbox" checked={opt.checked} className="w-5 h-5 accent-indigo-500" readOnly />
-              </div>
-            ))}
+            <div className="space-y-4">
+              <label className="flex items-center justify-between cursor-pointer">
+                <span className="text-neutral-400">Include Uppercase</span>
+                <input 
+                  type="checkbox" 
+                  checked={includeUpper} 
+                  onChange={(e) => setIncludeUpper(e.target.checked)}
+                  className="w-5 h-5 accent-indigo-500 rounded cursor-pointer" 
+                />
+              </label>
+              <label className="flex items-center justify-between cursor-pointer">
+                <span className="text-neutral-400">Include Numbers</span>
+                <input 
+                  type="checkbox" 
+                  checked={includeNumbers} 
+                  onChange={(e) => setIncludeNumbers(e.target.checked)}
+                  className="w-5 h-5 accent-indigo-500 rounded cursor-pointer" 
+                />
+              </label>
+              <label className="flex items-center justify-between cursor-pointer">
+                <span className="text-neutral-400">Include Symbols</span>
+                <input 
+                  type="checkbox" 
+                  checked={includeSymbols} 
+                  onChange={(e) => setIncludeSymbols(e.target.checked)}
+                  className="w-5 h-5 accent-indigo-500 rounded cursor-pointer" 
+                />
+              </label>
+            </div>
           </div>
           
-          <button className="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-500/20">
+          <button 
+            onClick={generatePassword}
+            className="w-full mt-8 py-4 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-500/20"
+          >
             Generate New Password
           </button>
         </div>

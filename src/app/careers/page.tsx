@@ -3,10 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const positions = [
-  { title: "Senior Security Researcher", department: "Cybersecurity", location: "Remote / Mars" },
-  { title: "Frontend Engineer (Framer Motion Wizard)", department: "Product", location: "Remote" },
-  { title: "AI Infrastructure Architect", department: "AI/ML", location: "San Francisco / Remote" },
-  { title: "Developer Advocate", department: "Growth", location: "Global" },
+  { title: "Senior Software Engineer, Infrastructure", department: "Engineering", location: "Remote / San Francisco" },
+  { title: "Frontend Software Engineer", department: "Engineering", location: "Remote / New York" },
+  { title: "Cloud Systems Architect", department: "Infrastructure", location: "San Francisco" },
+  { title: "Technical Product Manager", department: "Product", location: "London / Remote" },
 ];
 
 export default function CareersPage() {
@@ -17,9 +17,9 @@ export default function CareersPage() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Build the Future</h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Join Our Team</h1>
         <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-          Join Project Hyperium and help us build the next generation of developer tools and AI systems.
+          Join Project Hyperium and help us build scalable, enterprise-grade developer infrastructure.
         </p>
       </motion.div>
 

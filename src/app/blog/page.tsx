@@ -5,28 +5,28 @@ import Link from "next/link";
 
 const posts = [
   {
-    title: "The Rise of Autonomous Security Agents",
-    excerpt: "How AI is changing the landscape of threat detection and response.",
-    category: "AI",
-    author: "Hyperium Team",
-    date: "June 11, 2026",
-    slug: "autonomous-security-agents",
+    title: "The Evolution of Edge Computing",
+    excerpt: "How distributed edge networks are reducing latency and enabling enterprise scalability.",
+    category: "Infrastructure",
+    author: "Hyperium Engineering",
+    date: "October 12, 2024",
+    slug: "edge-computing-evolution",
   },
   {
-    title: "Post-Quantum Cryptography: Are We Ready?",
-    excerpt: "Exploring the next generation of encryption in a world of quantum computing.",
+    title: "Post-Quantum Cryptography in Enterprise Infrastructure",
+    excerpt: "Preparing your organization's security posture for the next generation of cryptographic challenges.",
     category: "Security",
     author: "Alex Rivers",
-    date: "June 08, 2026",
+    date: "September 28, 2024",
     slug: "post-quantum-cryptography",
   },
   {
-    title: "Building Hyper-Fast Edge Networks",
-    excerpt: "Optimizing global content delivery for AI workloads.",
-    category: "Infrastructure",
+    title: "Architecting Scalable AI Infrastructure",
+    excerpt: "A deep dive into building highly available systems to support complex machine learning workloads.",
+    category: "AI",
     author: "Sarah Chen",
-    date: "June 05, 2026",
-    slug: "edge-networks-ai",
+    date: "September 15, 2024",
+    slug: "ai-infrastructure",
   },
 ];
 
@@ -38,9 +38,9 @@ export default function BlogPage() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Hyperium Blog</h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Engineering Blog</h1>
         <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-          Insights, updates, and deep dives into the technology powering Project Hyperium.
+          Insights, updates, and deep dives into the enterprise technology powering Project Hyperium.
         </p>
       </motion.div>
 
